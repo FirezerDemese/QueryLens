@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QueryLens — SQL Intelligence Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="brand-icon">🔬</span>
+            <span class="brand-name">QueryLens</span>
+        </div>
+        <div class="nav-links">
+            <a href="https://github.com/firezerdemese/querylens" target="_blank" class="nav-link">GitHub</a>
+            <a href="/docs" target="_blank" class="nav-link">API Docs</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">AI-Powered SQL Intelligence</div>
+            <h1 class="hero-title">See Your SQL<br><span class="gradient-text">Differently</span></h1>
+            <p class="hero-subtitle">Ask questions in plain English. Get expert SQL instantly. Then let our analyzer catch every performance issue before it hits production.</p>
+            <div class="hero-stats">
+                <div class="stat"><span class="stat-number">9</span><span class="stat-label">Anti-patterns detected</span></div>
+                <div class="stat"><span class="stat-number">5</span><span class="stat-label">Live database tables</span></div>
+                <div class="stat"><span class="stat-number">AI</span><span class="stat-label">Powered by Gemini</span></div>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="tab-nav">
+            <button class="tab-btn active" data-tab="nl-to-sql" onclick="switchTab('nl-to-sql')">💬 Natural Language to SQL</button>
+            <button class="tab-btn" data-tab="sql-analyzer" onclick="switchTab('sql-analyzer')">🔍 SQL Analyzer</button>
+        </div>
+
+        <!-- Tab 1: NL to SQL -->
+        <div id="tab-nl-to-sql" class="tab-content active">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Ask Anything About Your Data</h2>
+                    <p class="card-subtitle">Type a business question. Watch it become expert SQL in seconds.</p>
+                </div>
+                <div class="example-queries">
+                    <span class="example-label">Try these:</span>
+                    <button class="example-btn" onclick="setExample(this.textContent)">Show top 5 customers by total spending</button>
+                    <button class="example-btn" onclick="setExample(this.textContent)">Which products are low on stock?</button>
+                    <button class="example-btn" onclick="setExample(this.textContent)">What departments have the highest average salary?</button>
+                    <button class="example-btn" onclick="setExample(this.textContent)">List customers who never placed an order</button>
+                    <button class="example-btn" onclick="setExample(this.textContent)">Show monthly revenue for 2024</button>
+                </div>
+                <div class="input-group">
+                    <textarea id="nl-input" class="text-input" placeholder="e.g. Show me the top 10 products by revenue last quarter..." rows="3"></textarea>
+                    <button id="nl-submit" class="btn btn-primary" onclick="runNLQuery()">
+                        <span class="btn-text">Generate SQL</span>
+                        <span class="btn-icon">→</span>
+                    </button>
+                </div>
+            </div>
+            <div id="nl-results" class="results-container hidden"></div>
+        </div>
+
+        <!-- Tab 2: SQL Analyzer -->
+        <div id="tab-sql-analyzer" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">SQL Quality Analyzer</h2>
+                    <p class="card-subtitle">Paste any SQL query. Get instant performance analysis and actionable fixes.</p>
+                </div>
+                <div class="example-queries">
+                    <span class="example-label">Try bad SQL:</span>
+                    <button class="example-btn example-bad" onclick="setBadExample(1)">SELECT * with function</button>
+                    <button class="example-btn example-bad" onclick="setBadExample(2)">Leading wildcard LIKE</button>
+                    <button class="example-btn example-bad" onclick="setBadExample(3)">NOT IN subquery</button>
+                    <button class="example-btn example-good" onclick="setBadExample(4)">Well-written SQL ✓</button>
+                </div>
+                <div class="input-group">
+                    <textarea id="sql-input" class="text-input code-input" placeholder="Paste your SQL here..." rows="8" spellcheck="false"></textarea>
+                    <button id="sql-submit" class="btn btn-primary" onclick="analyzeSQL()">
+                        <span class="btn-text">Analyze Query</span>
+                        <span class="btn-icon">→</span>
+                    </button>
+                </div>
+            </div>
+            <div id="analyzer-results" class="results-container hidden"></div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>Built by <strong>Firezer Demese</strong> · Senior Database Engineer ·
+        <a href="https://github.com/firezerdemese/querylens" target="_blank">GitHub</a> ·
+        <a href="https://linkedin.com/in/firezer-demese-dba/" target="_blank">LinkedIn</a></p>
+        <p class="footer-stack">FastAPI · PostgreSQL · Gemini AI · Docker · Railway</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
