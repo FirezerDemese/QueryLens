@@ -23,7 +23,7 @@ services:
       - "8000:8000"
     environment:
       - DATABASE_URL=postgresql://postgres:password@postgres:5432/querylens
-      - GROQ_API_KEY=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
+      - - GROQ_API_KEY=${GROQ_API_KEY}
     depends_on:
       postgres:
         condition: service_healthy
