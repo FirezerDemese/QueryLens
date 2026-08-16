@@ -146,11 +146,11 @@ function renderScoreBar(score) {
 
 function renderIssues(issues) {
     if (!issues || issues.length === 0) {
-        return `<div class="no-issues">✅ No issues found — this query looks clean!</div>`;
+        return `<div class="no-issues">No issues found.</div>`;
     }
     return `<div class="issues-list">${issues.map(issue => `
         <div class="issue-item issue-${issue.severity}">
-            <div class="issue-icon">${issue.severity === 'critical' ? '🔴' : issue.severity === 'warning' ? '🟡' : '🔵'}</div>
+            <div class="issue-icon"></div>
             <div class="issue-content">
                 <div class="issue-code">${issue.code}</div>
                 <div class="issue-message">${escapeHtml(issue.message)}</div>

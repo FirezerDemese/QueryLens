@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QueryLens — SQL Intelligence Platform</title>
+    <title>QueryLens — natural language to SQL, and a query analyzer</title>
+    <meta name="description" content="Ask a question in English and get SQL that runs against a live PostgreSQL database, or paste a query and have it checked against nine rules for full table scans and bad plans.">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -11,40 +12,41 @@
 <body>
     <nav class="navbar">
         <div class="nav-brand">
-            <span class="brand-icon">🔬</span>
+            <span class="brand-mark">QL</span>
             <span class="brand-name">QueryLens</span>
         </div>
         <div class="nav-links">
-            <a href="https://github.com/firezerdemese/querylens" target="_blank" class="nav-link">GitHub</a>
-            <a href="/docs" target="_blank" class="nav-link">API Docs</a>
+            <a href="https://firezerdemese.github.io" target="_blank" rel="noopener" class="nav-link">Portfolio</a>
+            <a href="https://github.com/FirezerDemese/querylens" target="_blank" rel="noopener" class="nav-link">GitHub</a>
+            <a href="/docs" target="_blank" rel="noopener" class="nav-link">API Docs</a>
         </div>
     </nav>
 
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-badge">AI-Powered SQL Intelligence</div>
-            <h1 class="hero-title">See Your SQL<br><span class="gradient-text">Differently</span></h1>
-            <p class="hero-subtitle">Ask questions in plain English. Get expert SQL instantly. Then let our analyzer catch every performance issue before it hits production.</p>
+            <h1 class="hero-title">QueryLens</h1>
+            <p class="hero-tagline">natural language to SQL, and a second opinion on SQL you already have</p>
+            <p class="hero-subtitle">Ask a question in English and it writes the query, runs it against a live PostgreSQL database, and shows you the rows that came back. Or paste a query you already have and it checks it against nine rules for the patterns that cause full table scans.</p>
             <div class="hero-stats">
-                <div class="stat"><span class="stat-number">9</span><span class="stat-label">Anti-patterns detected</span></div>
-                <div class="stat"><span class="stat-number">5</span><span class="stat-label">Live database tables</span></div>
-                <div class="stat"><span class="stat-number">AI</span><span class="stat-label">Powered by Gemini</span></div>
+                <div class="stat"><span class="stat-number">9</span><span class="stat-label">Analyzer rules</span></div>
+                <div class="stat"><span class="stat-number">5</span><span class="stat-label">Tables in the sample database</span></div>
+                <div class="stat"><span class="stat-number">8B</span><span class="stat-label">Llama 3.1 via Groq</span></div>
             </div>
         </div>
     </section>
 
     <main class="container">
         <div class="tab-nav">
-            <button class="tab-btn active" data-tab="nl-to-sql" onclick="switchTab('nl-to-sql')">💬 Natural Language to SQL</button>
-            <button class="tab-btn" data-tab="sql-analyzer" onclick="switchTab('sql-analyzer')">🔍 SQL Analyzer</button>
+            <button class="tab-btn active" data-tab="nl-to-sql" onclick="switchTab('nl-to-sql')">Ask a question</button>
+            <button class="tab-btn" data-tab="sql-analyzer" onclick="switchTab('sql-analyzer')">Analyze a query</button>
         </div>
 
         <!-- Tab 1: NL to SQL -->
         <div id="tab-nl-to-sql" class="tab-content active">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Ask Anything About Your Data</h2>
-                    <p class="card-subtitle">Type a business question. Watch it become expert SQL in seconds.</p>
+                    <h2 class="card-title">Ask a question in plain English</h2>
+                    <p class="card-subtitle">It writes the SQL, runs it against the sample database, and shows you both the query and the rows.</p>
                 </div>
                 <div class="example-queries">
                     <span class="example-label">Try these:</span>
@@ -69,15 +71,15 @@
         <div id="tab-sql-analyzer" class="tab-content">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">SQL Quality Analyzer</h2>
-                    <p class="card-subtitle">Paste any SQL query. Get instant performance analysis and actionable fixes.</p>
+                    <h2 class="card-title">Analyze a query</h2>
+                    <p class="card-subtitle">Nine rules for the patterns that stop an index being used. Each finding says what is wrong and what to write instead.</p>
                 </div>
                 <div class="example-queries">
-                    <span class="example-label">Try bad SQL:</span>
-                    <button class="example-btn example-bad" onclick="setBadExample(1)">SELECT * with function</button>
+                    <span class="example-label">Load an example:</span>
+                    <button class="example-btn example-bad" onclick="setBadExample(1)">Function on an indexed column</button>
                     <button class="example-btn example-bad" onclick="setBadExample(2)">Leading wildcard LIKE</button>
                     <button class="example-btn example-bad" onclick="setBadExample(3)">NOT IN subquery</button>
-                    <button class="example-btn example-good" onclick="setBadExample(4)">Well-written SQL ✓</button>
+                    <button class="example-btn example-good" onclick="setBadExample(4)">A query that passes</button>
                 </div>
                 <div class="input-group">
                     <textarea id="sql-input" class="text-input code-input" placeholder="Paste your SQL here..." rows="8" spellcheck="false"></textarea>
@@ -92,10 +94,11 @@
     </main>
 
     <footer class="footer">
-        <p>Built by <strong>Firezer Demese</strong> · Senior Database Engineer ·
-        <a href="https://github.com/firezerdemese/querylens" target="_blank">GitHub</a> ·
-        <a href="https://linkedin.com/in/firezer-demese-dba/" target="_blank">LinkedIn</a></p>
-        <p class="footer-stack">FastAPI · PostgreSQL · Gemini AI · Docker · Railway</p>
+        <p>Built by <strong>Firezer Demese</strong> · SQL Server DBA ·
+        <a href="https://firezerdemese.github.io" target="_blank" rel="noopener">Portfolio</a> ·
+        <a href="https://github.com/FirezerDemese/querylens" target="_blank" rel="noopener">GitHub</a> ·
+        <a href="https://linkedin.com/in/firezer-demese-dba/" target="_blank" rel="noopener">LinkedIn</a></p>
+        <p class="footer-stack">Python · FastAPI · PostgreSQL · Groq (Llama 3.1 8B) · Docker · Render</p>
     </footer>
 
     <script src="app.js"></script>

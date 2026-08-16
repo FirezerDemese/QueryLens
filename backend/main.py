@@ -10,7 +10,7 @@ from analyzer import analyze_sql
 
 app = FastAPI(
     title="QueryLens API",
-    description="LLM-powered SQL analyzer and natural language to SQL engine: Performance Booster",
+    description="Turns plain-English questions into SQL, runs them read-only against PostgreSQL, and checks any query against nine rules for the patterns that stop an index being used.",
     version="1.0.0"
 )
 
