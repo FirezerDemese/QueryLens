@@ -33,7 +33,7 @@ involved in generating SQL from English, never in judging it.
 
 ## Stack
 
-Python, FastAPI, asyncpg, PostgreSQL 15, sqlglot, Groq (`llama-3.1-8b-instant`),
+Python, FastAPI, asyncpg, PostgreSQL 15, sqlglot, Groq (`openai/gpt-oss-20b`),
 Docker. The frontend is plain HTML, CSS and JavaScript with no build step.
 
 ## Running it
